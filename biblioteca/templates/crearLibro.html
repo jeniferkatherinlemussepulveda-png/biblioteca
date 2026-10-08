@@ -1,0 +1,35 @@
+{% extends "base.html"%}
+{%  block content  %}
+<div class="container">
+<h1>crear Libro</h1>
+    <form method="POST" action="{% url 'crearLibro' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="" titulo="form-label">titulo</label>
+            <input
+                type="text"
+                class="form-control"
+                name="titulo"
+                id="titulo"
+                required>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripcion</label>
+            <textarea class="form-control"
+            name="descripcion" 
+            id="descripcion" 
+            required>
+    </textarea>
+    <div class="mb3-3">
+        <label for="autor">Autores</label>
+        <select class="form-select" name="autor" id="autor"required>
+            <option value="" disabled select>seleccionar autor</option>
+            {% for autor in autores %}
+            <option value="{{autor.id}}">{{ autor.nombre}} </option>
+            {% endfor%}
+        </select>
+    </div>
+    <div class=mb-3>
+        <input type="submit" class="btn btn-success" value="Guardar">
+    </div>
+{% endblock  %}%}
